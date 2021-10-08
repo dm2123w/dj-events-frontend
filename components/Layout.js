@@ -12,3 +12,9 @@ export default function Layout({ title, keywords, description, children }) {
         </div>
     );
 }
+
+Layout.defaultProps = {
+    title: "DJ Events | Find the best parties",
+    description: "Find the latest DJ and other musical events",
+    keywords: "music, dj, events",
+};
