@@ -22,6 +22,7 @@ export default function AddEventPage() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        
         // Validation
         const hasEmptyFields = Object.values(values).some(
             (element) => element === ""
@@ -40,7 +41,7 @@ export default function AddEventPage() {
         });
 
         if (!res.ok) {
-            toast.error("Something Went Wrong");
+            toast.error("Something went wrong");
         } else {
             const evt = await res.json();
             router.push(`/events/${evt.slug}`);
