@@ -16,7 +16,26 @@ export default function EventMap({ evt }) {
         zoom: 12,
     });
 
+    useEffect(() => {
+        Geocode.fromAddress(evt.address).then(
+            (response) => {
+                const { lat, lng } = response.results[0].geomerty.location;
+                setLat(lat);
+                setLng(lng);
+                setViewport({ ...viewport, latitude: lat, longitude: lng });
+                setLoading(false);
+            },
+            (error) => {
+                console.error(error);
+            }
+        );
+    }, []);
+
     Geocode.setApiKey(process.env.NEXT_PUBLIC_GOOGLE_MAP_API_KEY);
+
+    if (loading) return false;
+
+    console.log(lat, lng);
 
     return <div>MAP</div>;
 }
